@@ -25,6 +25,7 @@ import           Data.Foldable (foldMap)
 import           Prelude (head, tail, last, init)
 import qualified Data.Set as Set
 import           Data.Char as Char
+import           Data.Proxy
 import           Data.Dynamic
 import qualified Data.Binary as Binary
 import           System.Directory
