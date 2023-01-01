@@ -508,7 +508,9 @@ extractValue :: forall a. Typeable a => String -> Interpreter (Either String a)
 extractValue expr = do
   compiled <- dynCompileExpr expr
   liftIO $ print $ show $ dynTypeRep compiled
+  liftIO $ print $ tyConPackage $ typeRepTyCon $ dynTypeRep compiled
   liftIO $ print $ show $ typeRep (Proxy @a)
+  liftIO $ print $ tyConPackage $ typeRepTyCon $ typeRep (Proxy @a)
   case fromDynamic compiled of
     Nothing     -> return (Left multipleIHaskells)
     Just result -> return (Right result)
