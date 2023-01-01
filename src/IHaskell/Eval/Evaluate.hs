@@ -35,6 +35,7 @@ import           System.Random (getStdGen, randomRs)
 import           System.Process
 import           System.Exit
 import           System.Environment (getEnv)
+import           Data.Typeable
 
 #if MIN_VERSION_ghc(9,4,0)
 import qualified GHC.Runtime.Debugger as Debugger
