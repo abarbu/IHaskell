@@ -1,4 +1,4 @@
-{-# LANGUAGE NoOverloadedStrings, NoImplicitPrelude, TypeSynonymInstances, GADTs, CPP, TypeApplications, RankNTypes #-}
+{-# LANGUAGE NoOverloadedStrings, NoImplicitPrelude, TypeSynonymInstances, GADTs, CPP, TypeApplications, RankNTypes, ScopedTypeVariables #-}
 
 {- | Description : Wrapper around GHC API, exposing a single `evaluate` interface that runs
                    a statement, declaration, import, or directive.
