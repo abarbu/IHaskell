@@ -1,4 +1,4 @@
-{-# LANGUAGE NoOverloadedStrings, NoImplicitPrelude, TypeSynonymInstances, GADTs, CPP #-}
+{-# LANGUAGE NoOverloadedStrings, NoImplicitPrelude, TypeSynonymInstances, GADTs, CPP, TypeApplications #-}
 
 {- | Description : Wrapper around GHC API, exposing a single `evaluate` interface that runs
                    a statement, declaration, import, or directive.
@@ -502,10 +502,11 @@ evaluate kernelState code output widgetHandler = do
 
 -- | Compile a string and extract a value from it. Effectively extract the result of an expression
 -- from inside the notebook environment.
-extractValue :: Typeable a => String -> Interpreter (Either String a)
+extractValue :: forall a. Typeable a => String -> Interpreter (Either String a)
 extractValue expr = do
   compiled <- dynCompileExpr expr
   liftIO $ print $ show $ dynTypeRep compiled
+  liftIO $ print $ show $ typeRep (Proxy @a)
   case fromDynamic compiled of
     Nothing     -> return (Left multipleIHaskells)
     Just result -> return (Right result)
