@@ -505,7 +505,7 @@ evaluate kernelState code output widgetHandler = do
 extractValue :: Typeable a => String -> Interpreter (Either String a)
 extractValue expr = do
   compiled <- dynCompileExpr expr
-  liftIO $ print $ show $ dynTypeRep expr
+  liftIO $ print $ show $ dynTypeRep compiled
   case fromDynamic compiled of
     Nothing     -> return (Left multipleIHaskells)
     Just result -> return (Right result)
